@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fenris</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">FENRIS <span id="date"></span></div>
+  <div class="actions">
+    <button class="ghost" onclick="refreshNews()">Refresh news</button>
+    <button class="ghost" onclick="showWeekly()">Weekly review</button>
+    <button class="ghost" onclick="openSetup()">Settings</button>
+    <button class="ghost" onclick="logout()">Log out</button>
+  </div>
+</header>
+<div id="notes"></div>
+<main>
+  <section class="col">
+    <div class="card hero">
+      <div><div class="label">Daily score</div><div class="big" id="score">–</div><div class="muted" id="yscore"></div></div>
+      <div id="streaks" class="streaks"></div>
+    </div>
+    <div class="card"><h2>Today</h2><div id="workload"></div><ul id="tasks" class="list"></ul>
+      <form id="addForm"><input id="addInput" placeholder="Add task: finish report by Friday"><button>Add</button></form>
+      <div id="unfinished"></div>
+    </div>
+    <div class="card"><h2>Mandatory</h2><div id="mandatory"></div></div>
+    <div class="card"><h2>News</h2><div class="tabs" id="tabs"></div><div id="news"></div></div>
+  </section>
+  <section class="col">
+    <div class="card"><h2>Upcoming</h2><div id="upcoming"></div></div>
+    <div class="card"><h2>Long-term goals</h2><div id="goals"></div>
+      <form id="goalForm"><input id="goalTitle" placeholder="New goal title"><input id="goalMs" placeholder="Milestones, comma separated"><button>Add goal</button></form></div>
+    <div class="card chat"><h2>Assistant</h2>
+      <div class="quick"><button onclick="say('Good morning')">Good morning</button><button onclick="say('Plan my day')">Plan my day</button>
+      <button onclick="say('What\'s important today?')">What's important?</button><button onclick="say('End my day')">End my day</button></div>
+      <div id="log"></div>
+      <form id="chatForm"><input id="chatInput" placeholder="I studied React for 45 minutes"><button>Send</button></form>
+      <div class="muted" id="aiState"></div></div>
+  </section>
+</main>
+<div id="auth" class="modal hidden"><div class="box">
+  <h2 id="authTitle">Log in to Fenris</h2>
+  <form id="authForm" autocomplete="on">
+    <input id="a_name" placeholder="Your name" autocomplete="name" class="hidden" maxlength="60">
+    <input id="a_email" type="email" placeholder="Email" autocomplete="email" required maxlength="254">
+    <input id="a_pw" type="password" placeholder="Password (min 8 characters)" autocomplete="current-password" required minlength="8" maxlength="128">
+    <button id="a_btn">Log in</button>
+  </form>
+  <p class="muted" id="authErr" style="color:var(--must)"></p>
+  <p class="muted"><a href="#" id="authSwitch">Create an account</a></p>
+  <p class="muted">Your data is private to your account. Use a unique password: there is no password-reset email yet.</p>
+</div></div>
+<div id="modal" class="modal hidden"><div class="box"><div id="modalBody"></div><button onclick="closeModal()">Close</button></div></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
